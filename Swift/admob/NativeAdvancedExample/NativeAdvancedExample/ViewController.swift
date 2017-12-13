@@ -49,7 +49,7 @@ class ViewController: UIViewController, GADNativeAppInstallAdLoaderDelegate,
   var nativeAdView: UIView?
 
   /// The ad unit ID.
-  let adUnitID = "ca-app-pub-3940256099942544/3986624511"
+  let adUnitID = "/8663477/BR/Cricket/main/mob/cricket"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -96,7 +96,25 @@ class ViewController: UIViewController, GADNativeAppInstallAdLoaderDelegate,
       adLoader = GADAdLoader(adUnitID: adUnitID, rootViewController: self,
           adTypes: adTypes, options: nil)
       adLoader.delegate = self
-      adLoader.load(GADRequest())
+        let request = DFPRequest()
+        let extras = GADExtras()
+        extras.additionalParameters = ["page": "main",
+                                       "alert": false,
+                                       "app": "true",
+                                       "pos": "nat_lar_02_mob",
+                                       "size": "375x500",
+                                       "tags": "cricket",
+                                       "locale": "en_US",
+                                       "site": "Cricket",
+                                       "tdcidx": "BzFzdksFekFud0dzB193BkB1b0sCdTZuckABdkt1ckUFB0cG",
+                                       "pg": "section",
+                                       "vers": "5.9.0",
+                                       "tag_id": 4113,
+                                       "build": "1343",
+                                       "sid": 0]
+        request.register(extras)
+
+      adLoader.load(request)
     }
   }
 
